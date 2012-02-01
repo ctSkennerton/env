@@ -1,0 +1,6 @@
+set shiftwidth=4
+set tabstop=4
+color solarized
+if has("gui_running")
+set guioptions-=T
+endif

@@ -70,59 +70,33 @@ esac
 #
 #
 function revcomp(){
-reversed=`echo -n $1 | rev`
-len=${#reversed}
-i=0
-while [ $i -lt $len ]; do
-    case ${reversed:$i:1} in
-        T|t)
-            echo -n A
-            ;;
-        A|a)
-            echo -n T
-            ;;
-        C|c)
-            echo -n G
-            ;;
-        G|g)
-            echo -n C
-            ;;
-        *)
-            echo -n N
-    esac
-    let i=i+1
-done
-echo
-}
+echo $1 | perl -ne 'tr/ACTGactg/TGACtgac/;print scalar reverse;print "\n";'
+#reversed=`echo -n $1 | rev`
+#len=${#reversed}
+#i=0
+#while [ $i -lt $len ]; do
+#    case ${reversed:$i:1} in
+#        T|t)
+#            echo -n A
+#            ;;
+#        A|a)
+#            echo -n T
+#            ;;
+#        C|c)
+#            echo -n G
+#            ;;
+#        G|g)
+#            echo -n C
+#            ;;
+#        *)
+#            echo -n N
+#    esac
+#    let i=i+1
+#done
+#echo
+#}
 
 
-#jump to folders
-#
-#
-function go(){
-    case $1 in
-        "crass")
-            cd ~/Documents/Projects/crass
-            ;;
-        "aug10")
-            cd ~/Documents/PhD/Experimental_Results/August_2010_data
-            ;;
-        "crisprtools")
-            cd ~/Documents/Projects/crisprtools
-            ;;
-        "aug11")
-            cd ~/Documents/PhD/Experimental_Results/August_2011_data/viral/assemblies/iontorrent/0.5dil-100bp
-            ;;
-        "jul11")
-            cd ~/Documents/PhD/Experimental_Results/July_2011_data/viral/assemblies/iontorrent/0.5dil-100bp
-            ;;
-        "amd")
-            cd ~/Documents/PhD/Experimental_Results/crass/metagenomes/amd
-            ;;
-        *)
-            echo "unknown tag name!!"
-    esac
-}
 # enable color support of ls and also add handy aliases
 #if [ -x /usr/bin/dircolors ]; then
 #    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"

@@ -66,7 +66,11 @@ nnoremap <leader>r :call <SID>RunFile()<CR>
 nnoremap <leader>b :call <SID>BuildFile()<CR>
 vnoremap <leader>y "+y
 " }}}
-
+" Ack.vim {{{
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+" }}}
 " CtrlP {{{
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
@@ -90,6 +94,9 @@ augroup configgroup
     autocmd BufEnter *.sh setlocal shiftwidth=2
     autocmd BufEnter *.sh setlocal softtabstop=2
     autocmd BufEnter *.py setlocal tabstop=4
+    autocmd BufEnter *.yaml setlocal tabstop=2
+    autocmd BufEnter *.yaml setlocal shiftwidth=2
+    autocmd BufEnter *.yaml setlocal softtabstop=2
     autocmd BufEnter *.md setlocal ft=markdown
     autocmd BufEnter *.go setlocal noexpandtab
     autocmd BufEnter *.avsc setlocal ft=json
@@ -123,6 +130,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
+Plug 'mileszs/ack.vim'
 call plug#end()
 " }}}
 " airline {{{
@@ -180,6 +188,10 @@ function! <SID>BuildFile()
         :GoBuild
     endif
 endfunc
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 " }}}
 "
 

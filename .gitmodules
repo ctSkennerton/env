@@ -1,3 +1,0 @@
-[submodule "janus/Align"]
-	path = janus/Align
-	url = git://github.com/vim-scripts/Align.git

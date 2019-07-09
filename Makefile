@@ -22,3 +22,7 @@ scripts:
 			mkdir -p $(SCRIPTDIR) \
 		fi \
 		git clone https://github.com/ctSkennerton/scriptShed.git $(SCRIPTDIR)
+
+nvim:
+	-mkdir -p ~/.config/nvim/
+	ln -s nvim_init.vim ~/.config/nvim/init.vim
